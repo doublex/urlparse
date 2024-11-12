@@ -128,7 +128,7 @@ static int urlparse_parser_eof(urlparse_parser *up) {
 static void urlparse_url_set_field_data(urlparse_url *dest, int field,
                                         const char *data, const char *start,
                                         const char *end) {
-  dest->field_set |= 1 << field;
+  dest->field_set |= (uint16_t)(1 << field);
   dest->field_data[field].off = (uint16_t)(start - data);
   dest->field_data[field].len = (uint16_t)(end - start);
 }
