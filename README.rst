@@ -27,7 +27,7 @@ like RFC 3986.  Here is the allowed characters in each URL component:
 - port: ``0-9``
 - path: ``A-Za-z0-9!"$%&'()*+,-./:;<=>@[\]^_`{|}~``
 - query: ``A-Za-z0-9!"$%&'()*+,-./:;<=>?@[\]^_`{|}~``
-- fragment: ``A-Za-z0-9!"#$%&'()*+,-./:;<=>?@[\\]^_\`{|}~``
+- fragment: ``A-Za-z0-9!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~``
 
   - all consecutive ``#`` characters that precede a fragment are
     treated as a single ``#``.  A fragment cannot start with ``#``.
