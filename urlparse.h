@@ -154,6 +154,9 @@ typedef struct urlparse_url {
  * the URL as a request target that appears in CONNECT request, that
  * is, consisting of only the host and port number.
  *
+ * This function initializes |u| before its use.  If this function
+ * returns nonzero, |u| might not be initialized.
+ *
  * This function returns 0 if it succeeds, or
  * :macro:`URLPARSE_ERR_PARSE`.
  */

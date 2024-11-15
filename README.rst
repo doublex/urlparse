@@ -11,6 +11,11 @@ There is a slight difference in a return code when they fail.
 `urlparse_parse_url()` returns the negative error code
 ``URLPARSE_ERR_PARSE`` if it fails.
 
+A caller needs to call `http_parser_url_init()` before
+`http_parser_parse_url()`.  urlparse does not need a similar function
+because `urlparse_parser_url()` initializes ``urlparse_url`` before
+its use.
+
 `url_parser_parse_url()` historically does not follow any standards
 like RFC 3986.  Here is the allowed characters in each URL component:
 
