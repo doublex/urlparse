@@ -184,14 +184,11 @@ static int parse_path_abempty(urlparse_parser *up, urlparse_url *dest) {
     return 0;
   case '/':
     break;
-  case '*':
+  default:
     if (dest->field_set & (1 << URLPARSE_HOST)) {
       return URLPARSE_ERR_PARSE;
     }
-
     break;
-  default:
-    return URLPARSE_ERR_PARSE;
   }
 
   start = up->pos++;
@@ -617,16 +614,20 @@ int urlparse_parse_url(const char *url, size_t urllen, int is_connect,
     }
 
     if (dest->field_set & (1 << URLPARSE_SCHEMA)) {
-      if (up.end - up.pos < 3 || *up.pos != ':' || *(up.pos + 1) != '/' ||
-          *(up.pos + 2) != '/') {
+      if (up.end - up.pos < 1 || *up.pos != ':') {
         return URLPARSE_ERR_PARSE;
       }
 
-      up.pos += 3;
+      if (up.end - up.pos >= 3 && *(up.pos + 1) == '/' && *(up.pos + 2) && '/') {
+          up.pos += 3;
 
-      rv = parse_authority(&up, dest);
-      if (rv != 0) {
-        return rv;
+          rv = parse_authority(&up, dest);
+          if (rv != 0) {
+            return rv;
+          }
+      }
+      else {
+          up.pos += 1;
       }
     }
   }
